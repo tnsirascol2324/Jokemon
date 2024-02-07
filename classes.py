@@ -1,6 +1,6 @@
 ### Super-classe Creature
 class Creature :
-    '''Super-classe Creature :
+    '''# Super-classe Creature :
     Creer un objet :
         ma_Creature = Creature(Surnom[str], Pv[int], Nom_Espece[str], Liste_d_Actions[liste d'objet de la classe Actions_Creatures], Element[str])
     
@@ -16,6 +16,7 @@ class Creature :
     - get_element() -> Explicite
     - prendre_Degats(nbr) -> enlève "nbr" pv à la créature, pv minimum à 0
     - soigner_Pv(nbr) -> ajoute "nbr" pv à la créature, pv maximum à "
+    - executer_Action(action, cible) -> soigne ou attaque la "cible" en fonction de l "action" utilisé (action : Actions_Creatures() | cible : Creature())
     '''
     def __init__(self, param_Surnom = "Placeholder", param_Max_Pv = 20, param_Nom_Espece = "Placeholder", param_Liste_Actions = [], param_Element = None) :
         self.surnom = param_Surnom
@@ -39,7 +40,7 @@ class Creature :
         return self._nom_Espece
     
     def get_liste_Actions(self) :
-        return self._liste_Actions # A MODIFIER
+        return self._liste_Actions
     
     def get_element(self) :
         return self._element
@@ -55,6 +56,13 @@ class Creature :
         if self._pv > self._max_Pv :
             self._pv = self._max_Pv
     
+    def executer_Action(self, action, cible) :
+        type_Action = action._get_type_Action()
+        if type_Action == 0 :
+            cible.soigner_Pv(action.get_puissance())
+        elif type_Action == 1 :
+            cible.prendre_Degats(action.get_puissance())
+
 ### Sous-classe Feu
 class Creature_Feu(Creature) :
     def __init__(self, param_Surnom = "Placeholder", param_Max_Pv = 20, param_Nom_Espece = "Placeholder", param_Liste_Actions = []):
@@ -82,7 +90,7 @@ class Creature_Air(Creature) :
 
 ### Classe Actions_Creatures
 class Actions_Creatures :
-    '''Super-classe Action_Creatures :
+    '''# Super-classe Actions_Creatures :
     Creer un objet :
         mon_Action = Creature(Nom[str], Puissance_de_l_Action[int], Type_de_l_Actions[int (O ou 1)], Element[str])
     
@@ -107,6 +115,7 @@ class Actions_Creatures :
                 return f"Fiche recap de {self._nom} :\n- Attaque : {self._puissance} degats\n- Element : {self._element}"
             elif self._type_Action == 0 :
                 return f"Fiche recap de {self._nom} :\n- Soins : {self._puissance} pvs\n- Element : {self._element}"
+    
     ## Accesseurs
     def get_nom (self) :
         return self._nom
@@ -120,11 +129,11 @@ class Actions_Creatures :
     def get_element(self) :
         return self._element
 
-
 # Exemples
 attaque = Actions_Creatures("Lame Tranchante", 30, 1, "Feu")
 attaque1 = Actions_Creatures("Mini potion", 10, 0, "Eau")
-salameche = Creature_Feu("Michel", 35, "Salameche", [attaque])
+salameche = Creature_Feu("Michel", 35, "Salameche", [attaque, attaque1])
 
 print(salameche, "\n")
 print(attaque, attaque1, sep="\n\n")
+print(list(map(lambda x:x.get_nom(),salameche.get_liste_Actions())))
