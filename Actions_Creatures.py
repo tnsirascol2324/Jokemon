@@ -1,12 +1,28 @@
+from enum import StrEnum
+
+### Enums Type_Action et Elements
+class Elements (StrEnum) :
+    NULL = "Null"
+    FEU = "Feu"
+    EAU = "Eau"
+    TERRE = "Terre"
+    AIR = "Air"
+
+class Type_Action (StrEnum) :
+    NULL = "Null"
+    SOIN = "Soin"
+    ATTAQUE = "Attaque"
+
 ### Super-classe Actions_Creatures
 class Actions_Creatures :
     '''# Super-classe Actions_Creatures :
     Creer un objet :
-        mon_Action = Creature(Nom[str], Puissance_de_l_Action[int], Type_de_l_Actions[int (O ou 1)], Element[str])
+        mon_Action = Creature(Nom[str], Puissance_de_l_Action[int], Type_de_l_Actions[Membre de Type_Action], Element[Membre de Elements])
     
     Attributs :
-        _nom[str] | _puissance[int] | _type_Action[int*] | _element[str]
-        type_Action : 1 (Attaque) ou 0 (Soin)
+        _nom[str] | _puissance[int] | _type_Action[Type_Action._____] | _element[Elements.______]
+        _type_Action : membre de l'Enum Type_Action
+        _element : membre de l'Enum Elements
     
     Methodes :
     - get_nom() -> Explicite
@@ -14,17 +30,14 @@ class Actions_Creatures :
     - get_type_Action() -> Explicite
     - get_element() -> Explicite
     '''
-    def __init__(self, param_Nom = "Placeholder", param_Puissance = 1, param_Type_action = 1, param_Element = None) :
+    def __init__(self, param_Nom = "Null", param_Puissance = 1, param_Type_action = Type_Action.NULL, param_Element = Elements.NULL) :
         self._nom = param_Nom
         self._puissance = param_Puissance
         self._type_Action = param_Type_action
         self._element = param_Element
 
     def __str__(self) :
-            if self._type_Action == 1 :
-                return f"Fiche recap de {self._nom} :\n- Attaque : {self._puissance} degats\n- Element : {self._element}"
-            elif self._type_Action == 0 :
-                return f"Fiche recap de {self._nom} :\n- Soins : {self._puissance} pvs\n- Element : {self._element}"
+        return f"Fiche recap de {self._nom} :\n- {self._type_Action} : {self._puissance}\n- Element : {self._element}"
     
     ## Accesseurs
     def get_nom (self) :
