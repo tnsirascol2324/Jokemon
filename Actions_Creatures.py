@@ -1,14 +1,14 @@
 from enum import StrEnum
 
 ### Enums Type_Action et Elements
-class Elements (StrEnum) :
+class Elements(StrEnum) :
     NULL = "Null"
     FEU = "Feu"
     EAU = "Eau"
     TERRE = "Terre"
     AIR = "Air"
 
-class Type_Action (StrEnum) :
+class Type_Action(StrEnum) :
     NULL = "Null"
     SOIN = "Soin"
     ATTAQUE = "Attaque"
@@ -17,20 +17,20 @@ class Type_Action (StrEnum) :
 class Actions_Creatures :
     '''# Super-classe Actions_Creatures :
     Creer un objet :
-        mon_Action = Creature(Nom[str], Puissance_de_l_Action[int], Type_de_l_Actions[Membre de Type_Action], Element[Membre de Elements])
+        mon_Action = Creature(Nom[str], Type_de_l_Actions[Membre de Type_Action], Puissance_de_l_Action[int], Element[Membre de Elements])
     
     Attributs :
-        _nom[str] | _puissance[int] | _type_Action[Type_Action._____] | _element[Elements.______]
+        _nom[str] | _type_Action[Type_Action._____] | _puissance[int] | _element[Elements.______]
         _type_Action : membre de l'Enum Type_Action
         _element : membre de l'Enum Elements
     
     Methodes :
     - get_nom() -> Explicite
-    - get_puissance() -> Explicite
     - get_type_Action() -> Explicite
+    - get_puissance() -> Explicite
     - get_element() -> Explicite
     '''
-    def __init__(self, param_Nom = "Null", param_Puissance = 1, param_Type_action = Type_Action.NULL, param_Element = Elements.NULL) :
+    def __init__(self, param_Nom = "Null", param_Type_action = Type_Action.NULL, param_Puissance = 1, param_Element = Elements.NULL) :
         self._nom = param_Nom
         self._puissance = param_Puissance
         self._type_Action = param_Type_action
@@ -40,14 +40,14 @@ class Actions_Creatures :
         return f"Fiche recap de {self._nom} :\n- {self._type_Action} : {self._puissance}\n- Element : {self._element}"
     
     ## Accesseurs
-    def get_nom (self) :
+    def get_nom(self) :
         return self._nom
-    
-    def get_puissance (self) :
-        return self._puissance
-    
-    def get_type_Action (self) :
+        
+    def get_type_Action(self) :
         return self._type_Action
+    
+    def get_puissance(self) :
+        return self._puissance
     
     def get_element(self) :
         return self._element

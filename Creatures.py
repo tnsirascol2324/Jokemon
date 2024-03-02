@@ -5,8 +5,8 @@ from Actions_Creatures import *
 class Creature :
     '''# Super-classe Creature :
     Creer un objet :
-        ma_Creature = Creature(Max_Pv[int], Nom_Espece[str], Liste_d_Actions[liste d'objet de la classe Actions_Creatures], Element[Membre de Elements])
-    
+        ma_Creature = Creature(Nom_Espece[str], Max_Pv[int], Element[Membre de Elements], Liste_d_Actions[liste d'objet de la classe Actions_Creatures])
+        
     Attributs :
         surnom[str] | _max_Pv[int] | _pv[int] | _nom_Espece[str] | _liste_Actions[list*] | _element[Elements._____]
         _liste_Actions : Liste d'objet de la Classe Actions_Creatures
@@ -23,7 +23,7 @@ class Creature :
     - soigner_Pv(nbr) -> ajoute "nbr" pv à la créature, pv maximum à "
     - executer_Action(action, cible) -> soigne ou attaque la "cible" en fonction de l "action" utilisé (action : Actions_Creatures() | cible : Creature())
     '''
-    def __init__(self, param_Max_Pv = 20, param_Nom_Espece = "Null", param_Liste_Actions = [], param_Element = None) :
+    def __init__(self, param_Nom_Espece = "Null", param_Max_Pv = 20, param_Element = Elements.NULL, param_Liste_Actions = []) :
         self.surnom = param_Nom_Espece + " sauvage"
         self._max_Pv = param_Max_Pv
         self._pv = param_Max_Pv
@@ -70,37 +70,3 @@ class Creature :
             cible.soigner_Pv(action.get_puissance())
         elif type_Action == Type_Action.ATTAQUE :
             cible.prendre_Degats(action.get_puissance())
-
-### Sous-classe Feu
-class Creature_Feu(Creature) :
-    def __init__(self, param_Surnom = "Placeholder", param_Max_Pv = 20, param_Nom_Espece = "Placeholder", param_Liste_Actions = []):
-        Creature.__init__(self, param_Surnom, param_Max_Pv, param_Nom_Espece, param_Liste_Actions)
-        self._element = "Feu"
-
-### Sous-classe Eau
-class Creature_Eau(Creature) :
-    def __init__(self, param_Surnom = "Placeholder", param_Max_Pv = 20, param_Nom_Espece = "Placeholder", param_Liste_Actions = []):
-        Creature.__init__(self, param_Surnom, param_Max_Pv, param_Nom_Espece, param_Liste_Actions)
-        self._element = "Eau"
-
-### Sous-classe Terre
-class Creature_Terre(Creature) :
-    def __init__(self, param_Surnom = "Placeholder", param_Max_Pv = 20, param_Nom_Espece = "Placeholder", param_Liste_Actions = []):
-        Creature.__init__(self, param_Surnom, param_Max_Pv, param_Nom_Espece, param_Liste_Actions)
-        self._element = "Terre"
-
-### Sous-classe Air
-class Creature_Air(Creature) :
-    def __init__(self, param_Surnom = "Placeholder", param_Max_Pv = 20, param_Nom_Espece = "Placeholder", param_Liste_Actions = []):
-        Creature.__init__(self, param_Surnom, param_Max_Pv, param_Nom_Espece, param_Liste_Actions)
-        self._element = "Air"
-
-
-# Exemples
-attaque = Actions_Creatures("Lame Tranchante", 30, Type_Action.ATTAQUE, Elements.AIR)
-attaque1 = Actions_Creatures("Mini potion", 10, Type_Action.SOIN, Elements.EAU)
-salameche = Creature_Feu(35, "Salameche", [attaque, attaque1])
-
-print(salameche, "\n")
-print(attaque, attaque1, sep="\n\n")
-print(list(map(lambda x:x.get_nom(),salameche.get_liste_Actions())))
