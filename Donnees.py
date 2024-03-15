@@ -10,7 +10,7 @@ liste_Creatures = {
 
 ### Dictionnaires d'Actions_Creatures, liste des actions avec les caractéristiques propres à chacune
 liste_Actions_Creatures = {
-    "Lame Tranchante" : Actions_Creatures("Lame Tranchante", Type_Action.ATTAQUE, 1, Elements.AIR)
+    "Lame Tranchante" : Action_Creature("Lame Tranchante", Type_Action.ATTAQUE, 10, Elements.AIR)
 }
 
 ## Fonction pour obtenir une copie d'un objet avec les mêmes caractéristiques de l'original

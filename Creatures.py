@@ -1,9 +1,12 @@
 from typing import Self
 from Actions_Creatures import *
+from Etres_Vivants import *
 
 ### Super-classe Creature
-class Creature :
-    '''# Super-classe Creature :
+class Creature(Etre_Vivant) :
+    '''# Classe Creature :
+    Classe fille de la classe Etre_Vivant
+
     Creer un objet :
         ma_Creature = Creature(Nom_Espece[str], Max_Pv[int], Element[Membre de Elements], Liste_d_Actions[liste d'objet de la classe Actions_Creatures])
         
@@ -24,9 +27,7 @@ class Creature :
     - executer_Action(action, cible) -> soigne ou attaque la "cible" en fonction de l "action" utilisé (action : Actions_Creatures() | cible : Creature())
     '''
     def __init__(self, param_Nom_Espece = "Null", param_Max_Pv = 20, param_Element = Elements.NULL, param_Liste_Actions = []) :
-        self.surnom = param_Nom_Espece + " sauvage"
-        self._max_Pv = param_Max_Pv
-        self._pv = param_Max_Pv
+        Etre_Vivant.__init__(self, param_Max_Pv, param_Nom_Espece + " sauvage")
         self._nom_Espece = param_Nom_Espece
         self._liste_Actions = param_Liste_Actions
         self._element = param_Element
@@ -35,12 +36,6 @@ class Creature :
         return f"Fiche recap de {self.surnom} :\n- Pv : {self._pv}/{self._max_Pv}\n- Espece : {self._nom_Espece}\n- Element : {self._element}\n- Actions : {', '.join([action._nom for action in self._liste_Actions])}"
 
     ## Accesseurs
-    def get_max_Pv(self) :
-        return self._max_Pv
-
-    def get_Pv(self) :
-        return self._pv
-
     def get_nom_Espece(self) :
         return self._nom_Espece
     
@@ -50,21 +45,8 @@ class Creature :
     def get_element(self) :
         return self._element
     
-    ## Mutateurs
-    def changer_Surnom(self, nouveau_Surnom) :
-        self.surnom = nouveau_Surnom
-
-    def prendre_Degats(self, degats) :
-        self._pv = self._pv - degats
-        if self._pv < 0 :
-            self._pv = 0
-    
-    def soigner_Pv(self, soin) :
-        self._pv += soin
-        if self._pv > self._max_Pv :
-            self._pv = self._max_Pv
-    
-    def executer_Action(self, action : Actions_Creatures, cible : Self) :
+    ## Mutateurs  
+    def executer_Action(self, action : Action_Creature, cible : Self) :
         type_Action = action.get_type_Action()
         if type_Action == Type_Action.SOIN :
             cible.soigner_Pv(action.get_puissance())

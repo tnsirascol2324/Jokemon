@@ -14,8 +14,8 @@ class Type_Action(StrEnum) :
     ATTAQUE = "Attaque"
 
 ### Super-classe Actions_Creatures
-class Actions_Creatures :
-    '''# Super-classe Actions_Creatures :
+class Action_Creature :
+    '''# Classe Actions_Creatures :
     Creer un objet :
         mon_Action = Creature(Nom[str], Type_de_l_Actions[Membre de Type_Action], Puissance_de_l_Action[int], Element[Membre de Elements])
     
@@ -30,7 +30,7 @@ class Actions_Creatures :
     - get_puissance() -> Explicite
     - get_element() -> Explicite
     '''
-    def __init__(self, param_Nom = "Null", param_Type_action = Type_Action.NULL, param_Puissance = 1, param_Element = Elements.NULL) :
+    def __init__(self, param_Nom = "Null", param_Type_action = Type_Action.NULL, param_Puissance = 5, param_Element = Elements.NULL) :
         self._nom = param_Nom
         self._puissance = param_Puissance
         self._type_Action = param_Type_action
