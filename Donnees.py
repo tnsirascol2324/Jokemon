@@ -5,7 +5,9 @@ from copy import deepcopy
 ### Dictionnaire de Creature, liste des creatures avec les caractéristiques propres à chacun
 liste_Creatures = {
     "Salameche" : Creature("Salameche", 30, Elements.FEU, []),
-    "Picachute du Niagara" : Creature("Picachute du Niagara", 100, Elements.EAU, [])
+    "Picachute du Niagara" : Creature("Picachute du Niagara", 100, Elements.EAU, []),
+    "Carapax" : Creature("Carapax", 70, Elements.EAU, []),
+    "Magicorvée" : Creature("Magicorvée", 90, Elements.EAU, [])
 }
 
 ### Dictionnaires d'Actions_Creatures, liste des actions avec les caractéristiques propres à chacune
