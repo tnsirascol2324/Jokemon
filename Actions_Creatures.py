@@ -1,7 +1,7 @@
 from enum import StrEnum
 
 ### Enums Type_Action et Elements
-class Elements(StrEnum) :
+class Element(StrEnum) :
     NULL = "Null"
     FEU = "Feu"
     EAU = "Eau"
@@ -25,29 +25,34 @@ class Action_Creature :
         _element : membre de l'Enum Elements
     
     Methodes :
-    - get_nom() -> Explicite
-    - get_type_Action() -> Explicite
-    - get_puissance() -> Explicite
-    - get_element() -> Explicite
+    - get_nom() -> Renvoie l'attribut _nom de l'objet
+    - get_type_Action() -> Renvoie l'attribut _type_Action de l'objet
+    - get_puissance() -> Renvoie l'attribut _puissance de l'objet
+    - get_element() -> Renvoie l'attribut _element de l'objet
     '''
-    def __init__(self, param_Nom = "Null", param_Type_action = Type_Action.NULL, param_Puissance = 5, param_Element = Elements.NULL) :
+    def __init__(self, param_Nom : str = "Null", param_Type_action : Type_Action = Type_Action.NULL, param_Puissance : int = 5, param_Element : Element = Element.NULL) :
         self._nom = param_Nom
         self._puissance = param_Puissance
         self._type_Action = param_Type_action
         self._element = param_Element
 
     def __str__(self) :
+        '''Renvoie une fiche recap de l'action, affichant tous ses attributs de manière COOL ! B]'''
         return f"Fiche recap de {self._nom} :\n- {self._type_Action} : {self._puissance}\n- Element : {self._element}"
     
     ## Accesseurs
-    def get_nom(self) :
+    def get_nom(self) -> str :
+        '''Renvoie l'attribut _nom de l'objet'''
         return self._nom
         
-    def get_type_Action(self) :
+    def get_type_Action(self) -> Type_Action :
+        '''Renvoie l'attribut _type_Action de l'objet'''
         return self._type_Action
     
-    def get_puissance(self) :
+    def get_puissance(self) -> int :
+        '''Renvoie l'attribut _puissance de l'objet'''
         return self._puissance
     
-    def get_element(self) :
+    def get_element(self) -> Element :
+        '''Renvoie l'attribut _element de l'objet'''
         return self._element
