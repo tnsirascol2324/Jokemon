@@ -19,10 +19,6 @@ class Game:
         pygame.display.set_caption("JOKEMON")
         # Rendre le curseur de souris invisible
         pygame.mouse.set_visible(False)
-        # Ajout d'une musique
-        pygame.mixer.music.load('music/music.mp3')
-        pygame.mixer.music.play()
- 
         
         self.running = True
 
@@ -88,6 +84,8 @@ class Game:
         """
 
         clock = pygame.time.Clock()
+
+        pygame.init()
 
         while self.running:
 

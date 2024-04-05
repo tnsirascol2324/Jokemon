@@ -1,4 +1,7 @@
 import pygame
+from game import Game
+
+game = Game()
 
 class Menu:
     def __init__(self):
@@ -27,6 +30,8 @@ class Menu:
 
         clock = pygame.time.Clock()
 
+        pygame.init()
+
         while self.menu:
 
             self.input()
@@ -34,8 +39,9 @@ class Menu:
 
             # Event de fermeture du jeu
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+                if event.type == pygame.WINDOWCLOSE:
                     self.menu = False
+                    game.run()
 
             # Bloque les FPS à 60
             clock.tick(60)
