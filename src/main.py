@@ -6,4 +6,5 @@ if __name__ == '__main__':
     pygame.init()
     game = Game()
     menu = Menu()
-    menu.launching()
+    # menu.launching()
+    game.run()
